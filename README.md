@@ -38,6 +38,7 @@ UI -> Agent Runtime/Planner -> Workflow Orchestrator -> Queue/Workers -> Tool Re
 - **Pause and resume** — the orchestrator halts at approval gates and resumes purely from stored state
 - **Retry with backoff** — failed tool calls are retried with exponential backoff up to a max attempt count
 - **Human approval** — steps can require sign-off before the run continues
+- **Memory and context** — the `research` step writes its findings to memory; the `summarize` step recalls them and builds its output from that, not the raw task string. Both actions are logged as `memory_write` / `memory_read` audit events
 - **Crash recovery** — `main()` tears down and rebuilds the orchestrator/worker mid-run to simulate a real process restart, then resumes from disk
 - **Audit trail** — every status change, retry, and approval decision is logged and printed at the end of a run
 
